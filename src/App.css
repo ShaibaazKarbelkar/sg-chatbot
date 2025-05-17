@@ -1,38 +1,207 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: 'Roboto Slab', serif;
+  background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.chat-container {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 4px solid #22C55E;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  background: linear-gradient(90deg, #22C55E 0%, #15803D 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 20px 0;
+  user-select: none;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+#chat-window {
+  background: #D1FAE5;
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  outline: none;
+}
+
+/* Scrollbar */
+#chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat-window::-webkit-scrollbar-thumb {
+  background-color: rgba(34, 197, 94, 0.6);
+  border-radius: 4px;
+}
+
+#chat-window::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.message {
+  max-width: 70%;
+  padding: 12px 20px;
+  border-radius: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+}
+
+.message.bot {
+  background-color: #22C55E;
+  color: white;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.7);
+}
+
+.message.user {
+  background: linear-gradient(90deg, #3B82F6 0%, #1E40AF 100%);
+  color: white;
+  align-self: flex-end;
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.7);
+  user-select: text;
+}
+
+form#chat-form {
+  background: white;
+  border-top: 1px solid #BBE6C1;
+  padding: 16px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+button.option-btn {
+  background-color: #D1FAE5;
+  color: #22C55E;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  min-width: 100px;
+  white-space: normal;
+  /* Allow wrapping */
+  word-wrap: break-word;
+  /* Allow words to break */
+  max-width: 100%;
+  /* Limit the width */
+  text-align: center;
+  font-size: 0.9rem;
+  /* Set initial font size */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button.option-btn:hover {
+  background-color: #22C55E;
+  color: white;
+  box-shadow: 0 0 8px #15803D;
+}
+
+/* To scale the font down when the text is too long */
+button.option-btn {
+  display: inline-block;
+  max-width: 200px;
+  /* Set a max width to prevent buttons from expanding too much */
+  text-overflow: ellipsis;
+  /* Show an ellipsis for overflow text */
+  overflow: hidden;
+  /* Hide any overflow */
+}
+
+@media (max-width: 480px) {
+  .chat-container {
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 24px;
+    border-width: 0;
+  }
+
+  form#chat-form {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  button.option-btn {
+    flex: 1 1 45%;
+    min-width: auto;
+    font-size: 0.8rem;
+    /* Smaller font size on smaller screens */
+  }
+}
+
+input.input-field {
+  flex: 1 1 auto; 
+  min-width: 0;
+  padding: 0.75rem 2.4rem;
+  margin-right: 1rem;
+  border: 1.5px solid #BBE6C1;
+  border-radius: 24px;
+  font-size: 1rem;
+  outline-offset: 2px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-container {
+  display: flex;
+}
+
+input.input-field:focus {
+  border-color: #22C55E;
+  box-shadow: 0 0 6px #22C55E;
+}
+
+button.submit-btn {
+  background-color: #22C55E;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 24px;
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  box-shadow: 0 2px 6px rgba(21, 128, 61, 0.7);
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
 }
 
-.App-link {
-  color: #61dafb;
+button.submit-btn:hover {
+  background-color: #15803D;
+  outline: none;
+  box-shadow: 0 0 8px #15803D;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button.submit-btn svg {
+  width: 20px;
+  height: 20px;
 }
