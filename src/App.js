@@ -7,10 +7,10 @@ function App() {
   return (
     <div className="App">
       <Chatbot />
+      <p className='sk'>Designed And Developed BY SHAIBAAZ KARBELKAR &reg; &copy; &trade;</p>
     </div>
+    
   );
 }
 
 export default App;
-
-
